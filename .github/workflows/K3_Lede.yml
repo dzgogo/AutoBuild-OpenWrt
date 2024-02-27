@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: Build_k3_lede
+name: K3_Lede
 
 # Add a button to trigger the workflow
 on: 
@@ -66,11 +66,18 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-
-    - name: Import external feeds - passwall
+    
+    - name: Import external feeds - oui
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
+      #  git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
+        git clone https://github.com/zhaojh329/oui.git package/lienol
+      #  git clone "your_github_link" package/"your_folder_name" 
+
+    #- name: Import external feeds - passwall
+    #  working-directory: ./openwrt
+    #  run: |
+    #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
     #    git clone "your_github_link" package/"your_folder_name"      
 
     #- name: Import external feeds - JerryKuKu Argon
@@ -78,7 +85,7 @@ jobs:
     #  run: |
     #    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku
 
-    - name: Configuration Customization - Build_k3_lede
+    - name: Configuration Customization - K3_Lede
       env:
         CONFIG_FILE: 'k3_lede.config'
       run: |
